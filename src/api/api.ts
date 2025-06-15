@@ -1,4 +1,4 @@
-const API_KEY = "";
+const API_KEY = "76c80774554b4bebd47d8175fd79e9e1";
 
 const categories = [
     {
@@ -22,11 +22,6 @@ const categories = [
         path: `/discover/tv?api_key=${API_KEY}&with_genres=35`,
     },
     {
-        name: "romances",
-        title: "Romances",
-        path: `/discover/tv?api_key=${API_KEY}&with_genres=1074`,
-    },
-    {
         name: "documentaries",
         title: "Documentários",
         path: `/discover/tv?api_key=${API_KEY}&with_genres=99`,
@@ -35,12 +30,25 @@ const categories = [
 
 export const getMovies = async (path: string) => {
     try {
-        let url = `https://api.themoviedb.org/3${path}`;
+        const url = `https://api.themoviedb.org/3${path}`;
         const response = await fetch(url);
-        return await response;
+        const data = await response.json();
+        return data;
     } catch (error) {
-        console.log("Erro: ",error)
+        console.log("Erro: ", error);
+        return null;
     }
-}
+};
+
+// export const getMovies = async (path: string) => {
+//     try {
+//         let url = `https://api.themoviedb.org/3${path}`;
+//         const response = await fetch(url);
+//         const data = await response.json();
+//         return await response;
+//     } catch (error) {
+//         console.log("Erro: ",error)
+//     }
+// }
 
 export default categories;
